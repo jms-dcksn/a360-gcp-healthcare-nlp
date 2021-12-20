@@ -1,0 +1,149 @@
+{
+    "name": "Google Healthcare NLP",
+    "label": "[[label]]",
+    "description": "[[description]]",
+    "group": "com.automationanywhere",
+    "artifactName": "Google Healthcare NLP",
+    "packageVersion": "1.0.0-20211218-161924",
+    "codeVersion": "1.0.0-20211218-161924",
+    "author": "",
+    "commands": [
+        {
+            "name": "EndHCSession",
+            "label": "End Session",
+            "description": "Session End",
+            "nodeLabel": "End Session {{sessionName}}",
+            "minimumControlRoomVersion": "8750",
+            "minimumBotAgentVersion": "20.11",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.Ab_EndSessionCommand",
+            "icon": "healthcare_nlp_api.svg",
+            "comment": true,
+            "attributes": [
+                {
+                    "name": "sessionName",
+                    "label": "Session name",
+                    "type": "TEXT",
+                    "defaultValue": {
+                        "string": "Default",
+                        "type": "STRING"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "analyze",
+            "label": "Analyze Entities",
+            "description": "Analyze Entities",
+            "nodeLabel": "Analyze entities in medical text",
+            "minimumControlRoomVersion": "8750",
+            "minimumBotAgentVersion": "20.11",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.AnalyzeEntitiesCommand",
+            "icon": "healthcare_nlp_api.svg",
+            "comment": true,
+            "returnType": "DICTIONARY",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "Assigned to Dictionary Variable - each key contains a List",
+            "returnRequired": true,
+            "returnDescription": "Output to dictionary with keys 'entityPairs' (List of Dictionaries each with keys 'type' & 'content' 'entityMentions' (List of JSON strings), 'entities' (List of JSON strings), 'relationships' (List of JSON strings) - if found. If no relationships exist, a String is returned at this key.",
+            "attributes": [
+                {
+                    "name": "sessionName",
+                    "label": "Start Session",
+                    "type": "TEXT",
+                    "defaultValue": {
+                        "string": "Default",
+                        "type": "STRING"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "text",
+                    "label": "Medical Text",
+                    "description": "Enter the text to beanalyzed",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "startHCSession",
+            "label": "Start Session",
+            "description": "Starts new session",
+            "nodeLabel": "Start Session {{sessionName}}",
+            "minimumControlRoomVersion": "8750",
+            "minimumBotAgentVersion": "20.11",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.A_StartSessionCommand",
+            "icon": "healthcare_nlp_api.svg",
+            "comment": true,
+            "attributes": [
+                {
+                    "name": "sessionName",
+                    "label": "Start Session",
+                    "type": "TEXT",
+                    "defaultValue": {
+                        "string": "Default",
+                        "type": "STRING"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "jsonPath",
+                    "label": "Google API Authentication File (JSON)",
+                    "type": "FILE",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "projectID",
+                    "label": "Project ID",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "location",
+                    "label": "Location",
+                    "type": "SELECT",
+                    "defaultValue": {
+                        "string": "us-central1",
+                        "type": "STRING"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "US Central1",
+                            "value": "us-central1"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
